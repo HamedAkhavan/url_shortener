@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "url_shortener"
+version = "0.1.0"
+description = "shortens long urls"
+authors = [
+    {name = "Hamed Akhavan"}
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic[email]",
+    "pydantic-settings",
+    "python-dotenv",
+    "sqlalchemy",
+    "alembic",
+    "psycopg2-binary",
+    "argon2-cffi",
+    "python-jose[cryptography]",
+    "httpx>=0.28.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "bandit",
+    "ruff",
+    "mypy",
+    "black",
+    "isort",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+exclude = [
+    ".venv",
+    "__pycache__",
+    "migrations",
+    "bin",
+    "docs",
+    "coverage",
+    "requirements",
+    "venv",
+    "env",
+    "backend.egg-info",
+]
+select = ["E", "F", "W", "I", "UP", "B", "N"]
+ignore = [
+    "F403",  # undefined-or-wildcard-import
+    "F401",  # unused-import
+    "B008"
+]
+
+[tool.pylint]
+max-locals = 25
+max-arguments = 5
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
